@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computation of Grades</title>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            border: 2px solid #4CAF50; /* Green border */
+            padding: 8px;
+            text-align: left;
+        }
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        .result {
+            font-weight: bold;
+            color: #333;
+        }
+    
+        /* You can add your own CSS to style the table and page */
+    </style>
+</head>
+<body>
+
+<div>
+    <table border="1">
+        <tr>
+            <th colspan="4">Computation of Grades</th>
+        </tr>
+
+        <!-- WRITTEN TASKS SECTION -->
+        <tr>
+            <td colspan="4">WRITTEN TASKS</td>
+        </tr>
+        <tr>
+            <td>Quiz 1</td>
+            <td><input type="number" id="txtQuiz1" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="qRange1" value=""></td>
+        </tr>
+        <tr>
+            <td>Quiz 2</td>
+            <td><input type="number" id="txtQuiz2" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="qRange2" value=""></td>
+        </tr>
+        <tr>
+            <td>Quiz 3</td>
+            <td><input type="number" id="txtQuiz3" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="qRange3" value=""></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button onclick="computeQuizzes()">Compute Quizzes</button>
+                <span id="txtTotalQuizzes"></span>
+                <input type="checkbox" id="chkQuiz"> 20% 
+                <span id="quizResult"></span>
+            </td>
+        </tr>
+
+        <!-- PERFORMANCE TASKS SECTION -->
+        <tr>
+            <td colspan="4">PERFORMANCE TASKS</td>
+        </tr>
+        <tr>
+            <td>PT 1</td>
+            <td><input type="number" id="txtPT1" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="ptRange1" value=""></td>
+        </tr>
+        <tr>
+            <td>PT 2</td>
+            <td><input type="number" id="txtPT2" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="ptRange2" value=""></td>
+        </tr>
+        <tr>
+            <td>PT 3</td>
+            <td><input type="number" id="txtPT3" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="ptRange3" value=""></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button onclick="computePerformance()">Compute Performance Tasks</button>
+                <span id="txtTotalPerformance"></span>
+                <input type="checkbox" id="chkPerformance"> 60%
+                <span id="performanceResult"></span>
+            </td>
+        </tr>
+
+        <!-- PERIODICAL EXAM SECTION -->
+        <tr>
+            <td colspan="4">PERIODICAL EXAM</td>
+        </tr>
+        <tr>
+            <td>Periodical Exam</td>
+            <td><input type="number" id="txtExam" value=""></td>
+            <td>/</td>
+            <td><input type="number" id="examRange" value=""></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button onclick="computeExam()">Compute Exam</button>
+                <span id="txtTotalExam"></span>
+                <input type="checkbox" id="chkExam"> 20%
+                <span id="examResult"></span>
+            </td>
+        </tr>
+
+        <!-- FINAL GRADE SECTION -->
+        <tr>
+            
+            <td colspan="4">
+                <button onclick="computeFinalGrade()">GRADE</button>
+                <span id="finalGrade"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    // Function to compute quiz scores
+function computeQuizzes() {
+    const q1 = parseInt(document.getElementById("txtQuiz1").value) || 0;
+    const q2 = parseInt(document.getElementById("txtQuiz2").value) || 0;
+    const q3 = parseInt(document.getElementById("txtQuiz3").value) || 0;
+
+    const rangeQ1 = parseInt(document.getElementById("qRange1").value) || 0;
+    const rangeQ2 = parseInt(document.getElementById("qRange2").value) || 0;
+    const rangeQ3 = parseInt(document.getElementById("qRange3").value) || 0;
+
+    const totalQuizzes = (rangeQ1 + rangeQ2 + rangeQ3 > 0) 
+        ? ((q1 + q2 + q3) / (rangeQ1 + rangeQ2 + rangeQ3)) * 100 
+        : 0;
+
+    document.getElementById("txtTotalQuizzes").innerText = totalQuizzes.toFixed(2);
+
+    const quizResult = document.getElementById("chkQuiz").checked 
+        ? (totalQuizzes * 0.20).toFixed(2) 
+        : totalQuizzes.toFixed(2);
+
+    document.getElementById("quizResult").innerText = quizResult;
+}
+
+// Function to compute performance task scores
+function computePerformance() {
+    const pt1 = parseInt(document.getElementById("txtPT1").value) || 0;
+    const pt2 = parseInt(document.getElementById("txtPT2").value) || 0;
+    const pt3 = parseInt(document.getElementById("txtPT3").value) || 0;
+
+    const rangePT1 = parseInt(document.getElementById("ptRange1").value) || 0;
+    const rangePT2 = parseInt(document.getElementById("ptRange2").value) || 0;
+    const rangePT3 = parseInt(document.getElementById("ptRange3").value) || 0;
+
+    const totalPerformance = (rangePT1 + rangePT2 + rangePT3 > 0) 
+        ? ((pt1 + pt2 + pt3) / (rangePT1 + rangePT2 + rangePT3)) * 100 
+        : 0;
+
+    document.getElementById("txtTotalPerformance").innerText = totalPerformance.toFixed(2);
+
+    const performanceResult = document.getElementById("chkPerformance").checked 
+        ? (totalPerformance * 0.60).toFixed(2) 
+        : totalPerformance.toFixed(2);
+
+    document.getElementById("performanceResult").innerText = performanceResult;
+}
+
+// Function to compute periodical exam scores
+function computeExam() {
+    const exam = parseInt(document.getElementById("txtExam").value) || 0;
+    const examRange = parseInt(document.getElementById("examRange").value) || 0;
+
+    const totalExam = (examRange > 0) 
+        ? (exam / examRange) * 100 
+        : 0;
+
+    document.getElementById("txtTotalExam").innerText = totalExam.toFixed(2);
+
+    const examResult = document.getElementById("chkExam").checked 
+        ? (totalExam * 0.20).toFixed(2) 
+        : totalExam.toFixed(2);
+
+    document.getElementById("examResult").innerText = examResult;
+}
+
+// Function to compute and display the final grade
+function computeFinalGrade() {
+    computeQuizzes(); // Ensure latest quiz data is considered
+    computePerformance(); // Ensure latest performance data is considered
+    computeExam(); // Ensure latest exam data is considered
+
+    const quizResult = parseFloat(document.getElementById("quizResult").innerText) || 0;
+    const performanceResult = parseFloat(document.getElementById("performanceResult").innerText) || 0;
+    const examResult = parseFloat(document.getElementById("examResult").innerText) || 0;
+
+    const finalGrade = quizResult + performanceResult + examResult;
+
+    document.getElementById("finalGrade").innerText = finalGrade.toFixed(2);
+}
+
+// Event listeners for checkboxes
+document.getElementById("chkQuiz").addEventListener('change', computeQuizzes);
+document.getElementById("chkPerformance").addEventListener('change', computePerformance);
+document.getElementById("chkExam").addEventListener('change', computeExam);
+</script>
+
+</body>
+</html>
