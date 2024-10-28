@@ -1,0 +1,72 @@
+[
+    {
+        "title": "ALCOHOL IS SHIT",
+        "author": "Paul Churchill",
+        "description": "A critical look at the effects of alcohol on society and individuals.",
+        "price": 18.99,
+        "cover": "alcohol_is_shit.jpg"
+    },
+    {
+        "title": "CONTENT CREATORS ARE FULL OF SHIT",
+        "author": "Josh Barney",
+        "description": "An exploration of the pitfalls and pretensions in the content creation industry.",
+        "price": 15.50,
+        "cover": "content_creators_are_full_of_shit.jpg"
+    },
+    {
+        "title": "BAM: BECOMING A MASTER OF YOUR OWN LIFE",
+        "author": "Bronkar Lee with Cyndi Lee",
+        "description": "A guide to self-empowerment and personal growth through mastery of one’s own life.",
+        "price": 10.99,
+        "cover": "bam_becoming_a_master_of_your_own_life.jpg"
+    },
+    {
+        "title": "NEWS EVENT TRADING",
+        "author": "Ian Cooper",
+        "description": "Strategies for trading based on news events and market reactions.",
+        "price": 12.50,
+        "cover": "news_event_trading.jpg"
+    },
+    {
+        "title": "MANAGE YOUR NEW CAREER",
+        "author": "John Arthur",
+        "description": "Tips and strategies for successfully managing your new career path.",
+        "price": 9.99,
+        "cover": "manage_your_new_career.jpg"
+    },
+    {
+        "title": "HABITS FOR BETTER VISION",
+        "author": "Aileen Yi Fan",
+        "description": "A guide to developing habits that improve your vision and outlook on life.",
+        "price": 14.99,
+        "cover": "habits_for_better_vision.jpg"
+    },
+    {
+        "title": "THE POWER WITHIN",
+        "author": "Dominic Correli",
+        "description": "Inspiration and techniques to unlock your inner potential.",
+        "price": 13.99,
+        "cover": "the_power_within.jpg"
+    },
+    {
+        "title": "THE UNDERDOG CURSE",
+        "author": "Dr. Don Macdonald",
+        "description": "An examination of the challenges and advantages of being the underdog.",
+        "price": 11.99,
+        "cover": "the_underdog_curse.jpg"
+    },
+    {
+        "title": "BE A HIGH ACHIEVER",
+        "author": "Franklin Hillary Zenwa",
+        "description": "Strategies and mindsets for achieving high levels of success in life.",
+        "price": 16.99,
+        "cover": "be_a_high_achiever.jpg"
+    },
+    {
+        "title": "THE MOST IMPORTANT INVESTING PRINCIPLE IS NOT WHAT YOU THINK",
+        "author": "Chuch Hughes",
+        "description": "A fresh perspective on investing principles that challenge conventional wisdom.",
+        "price": 17.99,
+        "cover": "the_most_important_investing_principle.jpg"
+    }
+]
