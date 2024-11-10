@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Chain Life Cycle</title>
+    <style>
+        /* Basic page styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #e1f5fe, #81d4fa); /* Light blue gradient */
+            margin: 0;
+            padding: 20px;
+        }
+
+        header h1 {
+            color: #01579b;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Circular layout for the food chain */
+        .circle-container {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            margin: 0 auto;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e3f2fd;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Droppable elements in a cycle pattern */
+        .circle-container .droppable {
+            position: absolute;
+            width: 130px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #0277bd;
+            background-color: #b3e5fc;
+            border: 2px dashed #01579b;
+            transition: background-color 0.2s;
+        }
+
+        /* Positions for droppable areas */
+        .droppable[data-draggable-id="box1"] { top: 20px; left: 50%; transform: translateX(-50%); }
+        .droppable[data-draggable-id="box2"] { top: 50%; left: 20px; transform: translateY(-50%); }
+        .droppable[data-draggable-id="box3"] { bottom: 20px; left: 50%; transform: translateX(-50%); }
+        .droppable[data-draggable-id="box4"] { top: 50%; right: 20px; transform: translateY(-50%); }
+        .droppable[data-draggable-id="box5"] { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        /* Container for draggable items at the bottom */
+        .draggable-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 10px;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styles for draggable items with different colors */
+        .box {
+            width: 100px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+        .box:active {
+            transform: scale(1.1);
+        }
+
+        /* Unique colors for each box */
+        #box1 { background-color: #f44336; } /* Red */
+        #box2 { background-color: #4caf50; } /* Green */
+        #box3 { background-color: #ff9800; } /* Orange */
+        #box4 { background-color: #2196f3; } /* Blue */
+        #box5 { background-color: #9c27b0; } /* Purple */
+
+        /* Feedback and score area */
+        .board {
+            margin-top: 20px;
+            color: #01579b;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #remarks, #scores {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Reset button styling */
+        .reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #f44336;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .reset-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Chain Life Cycle</h1>
+    </header>
+
+    <div class="circle-container">
+        <!-- Droppable elements in a cycle pattern -->
+        <div class="droppable" data-draggable-id="box1">Energy Source</div>
+        <div class="droppable" data-draggable-id="box2">Producer</div>
+        <div class="droppable" data-draggable-id="box3">Primary Consumer</div>
+        <div class="droppable" data-draggable-id="box4">Secondary Consumer</div>
+        <div class="droppable" data-draggable-id="box5">Decomposer</div>
+    </div>
+
+    <!-- Score and remarks area -->
+    <div class="board">
+        Remarks: <span id="remarks"></span> <br>
+        Score: <span id="scores">0</span>
+    </div>
+
+    <!-- Draggable items container -->
+    <div class="draggable-container" id="draggable-container">
+        <div class="box" draggable="true" id="box1">Sunlight</div>
+        <div class="box" draggable="true" id="box2">Plant</div>
+        <div class="box" draggable="true" id="box3">Herbivore</div>
+        <div class="box" draggable="true" id="box4">Carnivore</div>
+        <div class="box" draggable="true" id="box5">Decomposer</div>
+    </div>
+
+    <!-- Reset Button -->
+    <button class="reset-button" onclick="resetGame()">Reset</button>
+
+    <script>
+        // Function to shuffle elements within the draggable container
+        function shuffleDraggables() {
+            const container = document.getElementById('draggable-container');
+            const items = Array.from(container.children);
+            items.sort(() => Math.random() - 0.5);
+            items.forEach(item => container.appendChild(item));
+        }
+
+        // Shuffle items on page load
+        document.addEventListener('DOMContentLoaded', shuffleDraggables);
+
+        // References to draggable and droppable elements
+        const draggableElements = document.querySelectorAll('.box');
+        const droppableElements = document.querySelectorAll('.droppable');
+        let score = 0;
+
+        // DRAG START event
+        draggableElements.forEach(element => {
+            element.addEventListener('dragstart', (event) => {
+                event.dataTransfer.setData('text', event.target.id);
+                event.currentTarget.classList.add('draggableFormat');
+            });
+        });
+
+        // DROP event
+        droppableElements.forEach(element => {
+            element.addEventListener('drop', (event) => {
+                event.preventDefault();
+                const draggedElementId = event.dataTransfer.getData('text');
+                const dropZoneId = event.target.getAttribute('data-draggable-id');
+                const draggedElement = document.getElementById(draggedElementId);
+
+                // Append dragged element to the drop zone
+                event.target.appendChild(draggedElement);
+
+                // Check if placement is correct and update score
+                if (draggedElementId === dropZoneId) {
+                    score += 1;
+                    document.getElementById('remarks').innerText = "Correct!";
+                    document.getElementById('scores').innerText = score;
+                } else {
+                    document.getElementById('remarks').innerText = "Try Again!";
+                }
+            });
+
+            // DRAG OVER event
+            element.addEventListener('dragover', (event) => {
+                event.preventDefault(); // Enable drop
+            });
+        });
+
+        // DRAG END event
+        draggableElements.forEach(element => {
+            element.addEventListener('dragend', (event) => {
+                event.currentTarget.classList.remove('draggableFormat');
+            });
+        });
+
+        // Reset the game
+        function resetGame() {
+            const container = document.getElementById('draggable-container');
+            draggableElements.forEach(element => {
+                container.appendChild(element); // Move each draggable element back to container
+            });
+            score = 0;
+            document.getElementById('remarks').innerText = "";
+            document.getElementById('scores').innerText = score;
+            shuffleDraggables(); // Shuffle items again on reset
+        }
+    </script>
+</body>
+</html>
