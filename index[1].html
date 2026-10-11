@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Benmark's web development portfolio and projects.">
+  <title>Benmark | Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#home">Benmark<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <p class="eyebrow">COMPUTER SCIENCE STUDENT</p>
+      <h1>Hi, I'm Benmark.<br><span>I build things for the web.</span></h1>
+      <p class="intro">I'm learning web development and building projects with HTML, CSS, and JavaScript. This page is where you can explore my work as I improve.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#projects">Explore my projects</a>
+        <a class="button secondary" href="#about">About me</a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">A LITTLE ABOUT ME</p>
+        <h2>Learning by building.</h2>
+      </div>
+      <p class="section-copy">I'm a Computer Science student working toward becoming a web developer. I use these projects to practice, learn new skills, and track my progress. Some projects may still be in progress.</p>
+      <div class="skill-list" aria-label="Technologies">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub</span>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2>My projects</h2>
+        <p class="section-copy">Open a live project or browse its source code on GitHub.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-number">PROJECT 01</div>
+          <h3>Online Catalog</h3>
+          <p>A catalog website project with item content and supporting images, HTML, CSS, and JavaScript.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <div class="project-links">
+            <a href="https://benmark1020.github.io/Portfolio-/Online%20Catalog/" target="_blank" rel="noopener noreferrer">Live website ↗</a>
+            <a href="https://github.com/benmark1020/Portfolio-/tree/main/Online%20Catalog" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-number">PROJECT 02</div>
+          <h3>Validation Form</h3>
+          <p>A form-validation project. Update this description to explain what the form checks and what you learned.</p>
+          <div class="tags"><span>HTML</span><span>Forms</span></div>
+          <div class="project-links">
+            <a href="https://benmark1020.github.io/Portfolio-/Validation%20.html" target="_blank" rel="noopener noreferrer">Try project ↗</a>
+            <a href="https://github.com/benmark1020/Portfolio-/blob/main/Validation%20.html" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card project-placeholder">
+          <div class="project-number">PROJECT 03</div>
+          <h3>Your next project</h3>
+          <p>Replace this card with your next website, school activity, or coding project.</p>
+          <div class="tags"><span>Coming soon</span></div>
+          <div class="project-links">
+            <a href="https://github.com/benmark1020" target="_blank" rel="noopener noreferrer">View GitHub profile ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <p class="eyebrow">LET'S CONNECT</p>
+      <h2>Thanks for checking out my work.</h2>
+      <p>I'll keep adding projects as I learn and build more.</p>
+      <a class="button primary" href="https://github.com/benmark1020" target="_blank" rel="noopener noreferrer">Visit my GitHub</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Benmark</span>
+    <span>Built with HTML, CSS, and JavaScript.</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
